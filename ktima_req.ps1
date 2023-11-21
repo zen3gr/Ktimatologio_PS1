@@ -29,14 +29,22 @@ $headers = @{
 $body = @{
     "Message" = $message
 }
-$response = Invoke-WebRequest -Uri "https://maps.gov.gr/gis/map/KT/KT__PostHandlerCommon" `
-    -Method Post `
-    -WebSession $session `
-    -Headers $headers `
-    -ContentType "application/x-www-form-urlencoded; charset=UTF-8" `
-    -UserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" `
-    -Body $body
 
-# Output the response
-$responseContent = $response.Content
-$responseContent
+try {
+    $response = Invoke-WebRequest -Uri "https://maps.gov.gr/gis/map/KT/KT__PostHandlerCommon" `
+        -Method Post `
+        -WebSession $session `
+        -Headers $headers `
+        -ContentType "application/x-www-form-urlencoded; charset=UTF-8" `
+        -UserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" `
+        -Body $body `
+        -TimeoutSec 15
+
+    # Output the response
+    $responseContent = $response.Content
+    $responseContent
+} catch {
+    # Handle timeout
+    $responseContent = "timeout"
+    $responseContent
+}
