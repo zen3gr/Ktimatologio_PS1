@@ -43,8 +43,12 @@ try {
     # Output the response
     $responseContent = $response.Content
     $responseContent
-} catch {
+} catch [System.Management.Automation.PSInvalidOperationException] {
     # Handle timeout
     $responseContent = "timeout"
+    $responseContent
+} catch {
+    # Handle other errors (you can add more specific catch blocks for different exception types if needed)
+    $responseContent = "wrongcookie"
     $responseContent
 }
