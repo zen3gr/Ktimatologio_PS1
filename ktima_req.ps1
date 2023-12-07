@@ -8,7 +8,7 @@ $message = "LookForGPropID|$Variable"
 $session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
 $cookie = New-Object System.Net.Cookie
 $cookie.Name = ".AspNetCore.Antiforgery.OvFV5KRnAAc"
-$cookie.Value = "CfDJ8K5j-F2PodhIrJmVGdl7vRRquFaJd8rehOiRg9chQrZe1JMM-9wEY1rfIBtVUvlvaCgA6FVTsavJI4f8Izmu0RRwHNCZKJFzbdWg29n69I9V7RMlZHjD84WvO7ess6ynUNZ3C-7VMKyRDq6wHojWEos"
+$cookie.Value = "CfDJ8PRpNdCwqcVNmpkXHWjcfvfp2qvZi2sVPuXczAWjNJqkshshaRF9Zau53pSkSLFi1nMuDn5nyL3vsJuBd9tnO2vL4U6vnIHwuJMfK0tJrHTX22HeR4zkWvl6Yos-tRBPbvTBuHUPybXH6OQtMs0KC70"
 $cookie.Domain = "maps.gov.gr"
 $session.Cookies.Add($cookie)
 $headers = @{
@@ -17,7 +17,7 @@ $headers = @{
     "DNT" = "1"
     "Origin" = "https://maps.gov.gr"
     "Referer" = "https://maps.gov.gr/gis/map/"
-    "RequestVerificationToken" = "CfDJ8K5j-F2PodhIrJmVGdl7vRR_VQrZZs30S9qwZU9yie-Ui00Rfvgl_VGctZjUwJFZzBIkDaJ95-PJt-4KhXkhP8ZOE4F9Fv9xKo167eKk8jKkNT3qqQj4vp14yLTb2n-ZLG5kt2rlkf2FMK10ZOCfCAA"
+    "RequestVerificationToken" = "CfDJ8Lsmv6URL-lKi_y6a3jwNZ4J6BGC4JIx0tvqWH23QuSeYFHbdt6Wg56ibnOV_e55EcuEBbo-yT_0VFoVpBqsOgvCwedE2hBxldH2miv9UkNLmjNfPD8tctYFa9RU_JhS8mX9T7zvzI8t8_GynBz9WCc"
     "Sec-Fetch-Dest" = "empty"
     "Sec-Fetch-Mode" = "cors"
     "Sec-Fetch-Site" = "same-origin"
