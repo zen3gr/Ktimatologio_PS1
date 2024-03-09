@@ -5,42 +5,42 @@ param (
 # Construct the "Message" value by appending the variable to the fixed part
 $message = "LookForGPropID|$Variable"
 
-$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
-$cookie = New-Object System.Net.Cookie
-$cookie.Name = ".AspNetCore.Antiforgery.OvFV5KRnAAc"
-$cookie.Value = "CfDJ8PRpNdCwqcVNmpkXHWjcfvfp2qvZi2sVPuXczAWjNJqkshshaRF9Zau53pSkSLFi1nMuDn5nyL3vsJuBd9tnO2vL4U6vnIHwuJMfK0tJrHTX22HeR4zkWvl6Yos-tRBPbvTBuHUPybXH6OQtMs0KC70"
-$cookie.Domain = "maps.gov.gr"
-$session.Cookies.Add($cookie)
-$headers = @{
-    "Accept" = "*/*"
-    "Accept-Language" = "el-GR,el;q=0.9,en;q=0.8"
-    "DNT" = "1"
-    "Origin" = "https://maps.gov.gr"
-    "Referer" = "https://maps.gov.gr/gis/map/"
-    "RequestVerificationToken" = "CfDJ8Lsmv6URL-lKi_y6a3jwNZ4J6BGC4JIx0tvqWH23QuSeYFHbdt6Wg56ibnOV_e55EcuEBbo-yT_0VFoVpBqsOgvCwedE2hBxldH2miv9UkNLmjNfPD8tctYFa9RU_JhS8mX9T7zvzI8t8_GynBz9WCc"
-    "Sec-Fetch-Dest" = "empty"
-    "Sec-Fetch-Mode" = "cors"
-    "Sec-Fetch-Site" = "same-origin"
-    "X-Requested-With" = "XMLHttpRequest"
-    "sec-ch-ua" = "`"Chromium`";v=`"118`", `"Google Chrome`";v=`"118`", `"Not=A?Brand`";v=`"99`""
-    "sec-ch-ua-mobile" = "?0"
-    "sec-ch-ua-platform" = "`"Windows`""
-}
 $body = @{
     "Message" = $message
 }
 
-try {
-    $response = Invoke-WebRequest -Uri "https://maps.gov.gr/gis/map/KT/KT__PostHandlerCommon" `
-        -Method Post `
-        -WebSession $session `
-        -Headers $headers `
-        -ContentType "application/x-www-form-urlencoded; charset=UTF-8" `
-        -UserAgent "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" `
-        -Body $body `
-        -TimeoutSec 20
+$session = New-Object Microsoft.PowerShell.Commands.WebRequestSession
+$session.UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
+$session.Cookies.Add((New-Object System.Net.Cookie(".AspNetCore.Antiforgery.OvFV5KRnAAc", "CfDJ8OSBp992T1dLoV-idSwOs9fMjJZaRLVdgp4pYCYl5vD4TIyS6QGvFBLVm_srkwgVC5pR7iGH-bvBL40zFErkmW1kX521gWgfqsMY6iMooOZcR9xIF2RI1BMb3y_0z1BOM2O0VM1vatv5rtGTcNuAubs", "/", "maps.gov.gr")))
+$session.Cookies.Add((New-Object System.Net.Cookie("cookiesession1", "678A3E46A0B24D9D26D504DC967435F8", "/", "maps.gov.gr")))
+try
+{
+$response = Invoke-WebRequest -Uri "https://maps.gov.gr/gis/map/KT/KT__PostHandlerCommon" `
+-Method POST `
+-WebSession $session `
+-Headers @{
+"Accept"="*/*"
+  "Accept-Encoding"="gzip, deflate, br, zstd"
+  "Accept-Language"="en-GB,en;q=0.9"
+  "DNT"="1"
+  "Origin"="https://maps.gov.gr"
+  "Referer"="https://maps.gov.gr/gis/map/"
+  "RequestVerificationToken"="CfDJ8OSBp992T1dLoV-idSwOs9foel5n6jHR8lF7oooa3uwMLeOmWc_EG12t7b8UVrR1AINO3YN4h2_I2d-hIFY_Wq1R-xyksWj-D3uick8dbzSSsLFBA6Cn9-KOrJJSqcS6Ph_G7LgQUalmr6XPKS_LLZM"
+  "Sec-Fetch-Dest"="empty"
+  "Sec-Fetch-Mode"="cors"
+  "Sec-Fetch-Site"="same-origin"
+  "X-Requested-With"="XMLHttpRequest"
+  "sec-ch-ua"="`"Chromium`";v=`"122`", `"Not(A:Brand`";v=`"24`", `"Google Chrome`";v=`"122`""
+  "sec-ch-ua-mobile"="?0"
 
-    # Output the response
+
+} `
+-ContentType "application/x-www-form-urlencoded; charset=UTF-8" `
+-Body $body `
+-Timeout 20
+
+
+# Output the response
     $responseContent = $response.Content
     $responseContent
 } catch [System.Management.Automation.PSInvalidOperationException] {
