@@ -15,7 +15,7 @@ $session.Cookies.Add((New-Object System.Net.Cookie(".AspNetCore.Antiforgery.OvFV
 $session.Cookies.Add((New-Object System.Net.Cookie("cookiesession1", "678A3E460F7C0D32C69829E7CBB151B8", "/", "maps.gov.gr")))
 try
 {
-$response = Invoke-WebRequest -UseBasicParsing -Uri "https://maps.gov.gr/gis/map/PostHandler" `
+$response = Invoke-WebRequest -Uri "https://maps.gov.gr/gis/map/KT/KT__PostHandlerCommon" `
 -Method POST `
 -WebSession $session `
 -Headers @{
